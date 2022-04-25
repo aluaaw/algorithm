@@ -24,13 +24,6 @@ public class QueueService {
         deQueue();
     }
 
-    // position index 초기화
-    public void initQueue() {
-        System.out.println("init QUEUE");
-        inputPosition = 0;
-        outputPosition = 0;
-    }
-
     // 큐 포화상태
     public boolean isFull() {
         System.out.println("CHECK FULL");
@@ -41,6 +34,8 @@ public class QueueService {
             for (int queue : queueArray) {
                 if (queue == 0) {
                     System.out.println("포화상태가 아님");
+                    // 포화상태가 아닌데 inputPosition이 첫번째 index값으로 돌아가야 한다면 inputPosition initialize
+                    if (inputPosition == size) inputPosition = 0;
                     return false;
                 }
             }
@@ -61,6 +56,8 @@ public class QueueService {
             for (int queue : queueArray) {
                 if (queue != 0) {
                     System.out.println("공백상태가 아님");
+                    // 공백상태가 아닌데 outputPosition이 첫번째 index값으로 돌아가야 한다면 outputPosition initialize
+                    if (outputPosition == size) outputPosition = 0;
                     return false;
                 }
             }
@@ -78,21 +75,12 @@ public class QueueService {
             System.out.println("FULL IS TRUE");
             return false;
         }
-        // 처음일 경우 초기화
-        if (inputPosition == -1) {
-            initQueue();
-        }
 
         // 추가처리
         queueArray[inputPosition] = value;
         inputPosition = inputPosition + 1;
         System.out.println("after enQueue, input is " + inputPosition);
         System.out.println("queue is " + Arrays.toString(queueArray));
-
-        // position이 동일할 때 초기화한다.
-        if (inputPosition == outputPosition) {
-            initQueue();
-        }
 
         return true;
     }
@@ -107,11 +95,6 @@ public class QueueService {
         // 값 출력
         queueArray[outputPosition] = 0;
         outputPosition = outputPosition + 1;
-
-        // position이 동일할 때 초기화한다.
-        if (inputPosition == outputPosition) {
-            initQueue();
-        }
 
         System.out.println("after deQueue, input is " + inputPosition);
         System.out.println("after deQueue, output is " + outputPosition);

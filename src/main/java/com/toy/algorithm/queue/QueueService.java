@@ -69,11 +69,11 @@ public class QueueService {
     }
 
     // 큐의 삽입연산
-    public boolean enQueue(int value) {
+    public void enQueue(int value) {
         // 큐의 포화상태 확인, 포화상태일 때에는 더 이상 넣을 수 없음
         if (isFull()) {
             System.out.println("FULL IS TRUE");
-            return false;
+            return;
         }
 
         // 추가처리
@@ -82,14 +82,13 @@ public class QueueService {
         System.out.println("after enQueue, input is " + inputPosition);
         System.out.println("queue is " + Arrays.toString(queueArray));
 
-        return true;
     }
 
-    public boolean deQueue() {
+    public void deQueue() {
         // 큐의 공백상태 확인, 공백상태일 때에는 더 이상 삭제할 수 없음
         if (isEmpty()) {
             System.out.println("EMPTY IS TRUE");
-            return false;
+            return;
         }
 
         // 값 출력
@@ -99,6 +98,5 @@ public class QueueService {
         System.out.println("after deQueue, input is " + inputPosition);
         System.out.println("after deQueue, output is " + outputPosition);
         System.out.println("queue is " + Arrays.toString(queueArray));
-        return true;
     }
 }

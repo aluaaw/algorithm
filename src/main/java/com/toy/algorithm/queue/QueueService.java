@@ -27,7 +27,6 @@ public class QueueService {
         inputPosition = inputPosition + 1;
         System.out.println("after enQueue, input is " + inputPosition);
         System.out.println("queue is " + Arrays.toString(queueArray));
-
     }
 
     public void deQueue() {

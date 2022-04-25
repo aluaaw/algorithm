@@ -14,11 +14,11 @@ public class QueueController {
 
     @GetMapping("circular/enqueue")
     public void circularQueue_enqueue(@RequestParam int value) {
-        queueService.circularQueue_enqueue(value);
+        queueService.enQueue(value);
     }
 
     @GetMapping("circular/dequeue")
     public void circularQueue_dequeue() {
-        queueService.circularQueue_dequeue();
+        queueService.deQueue();
     }
 }
